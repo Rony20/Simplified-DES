@@ -75,7 +75,7 @@ def sdes_encryption(plaintext,key,ip,ep,s1,s2,p4,p10,p8):
     sbx1, sbx2 = spliter(xorout, 4)  # Spliting of output of xor operation
     r1r1, r1c1 = giveindex(sbx1)  # Getting index for sbox s1 & s2 from splited string
     r1r2, r1c2 = giveindex(sbx2)
-    u_r0 = s1[r1r1][r1c1] + s2[r1r2][r1c2]  # Getting according data from s-boxes
+    u_r0 = format(s1[r1r1][r1c1],'b') + format(s2[r1r2][r1c2],'b')  # Getting according data from s-boxes converted into binary string
     u_r0 = permute(p4, u_r0, 4)  # Last 4 bit permutation
     # end of Round 1
 
@@ -88,7 +88,7 @@ def sdes_encryption(plaintext,key,ip,ep,s1,s2,p4,p10,p8):
     sbx1, sbx2 = spliter(xorout, 4)  # Spliting of output of xor operation
     r2r1, r2c1 = giveindex(sbx1)  # Getting index for sbox s1 & s2 from splited string
     r2r2, r2c2 = giveindex(sbx2)
-    u_r1 = s1[r2r1][r2c1] + s2[r2r2][r2c2]  # Getting according data from s-boxes
+    u_r1 = format(s1[r2r1][r2c1],'b') + format(s2[r2r2][r2c2],'b')  # Getting according data from s-boxes converted into binary string
     u_r1 = permute(p4, u_r1, 4)  # Last 4 bit permutation
     u_r1 = doxor(u_r1, l1, 4)
     # end of Round 2
@@ -116,7 +116,7 @@ def sdes_decryption(ciphertext,key,ip,ep,s1,s2,p4,p10,p8):
     sbx1, sbx2 = spliter(xorout, 4)  # Spliting of output of xor operation
     r1r1, r1c1 = giveindex(sbx1)  # Getting index for sbox s1 & s2 from splited string
     r1r2, r1c2 = giveindex(sbx2)
-    u_r0 = s1[r1r1][r1c1] + s2[r1r2][r1c2]  # Getting according data from s-boxes
+    u_r0 = format(s1[r1r1][r1c1],'b') + format(s2[r1r2][r1c2],'b')  # Getting according data from s-boxes converted into binary string
     u_r0 = permute(p4, u_r0, 4)  # Last 4 bit permutation
     # end of Round 1
 
@@ -129,7 +129,7 @@ def sdes_decryption(ciphertext,key,ip,ep,s1,s2,p4,p10,p8):
     sbx1, sbx2 = spliter(xorout, 4)  # Spliting of output of xor operation
     r2r1, r2c1 = giveindex(sbx1)  # Getting index for sbox s1 & s2 from splited string
     r2r2, r2c2 = giveindex(sbx2)
-    u_r1 = s1[r2r1][r2c1] + s2[r2r2][r2c2]  # Getting according data from s-boxes
+    u_r1 = format(s1[r2r1][r2c1],'b') + format(s2[r2r2][r2c2],'b')  # Getting according data from s-boxes converted into binary string
     u_r1 = permute(p4, u_r1, 4)  # Last 4 bit permutation
     u_r1 = doxor(u_r1, l1, 4)
     # end of Round 2
@@ -145,8 +145,8 @@ p8=[6,3,7,4,8,5,10,9]             #P-box for contaction permutation
 p4=[2,4,3,1]        
 ip=[2,6,3,1,4,8,5,7]                #initial permutation box
 ep=[4,1,2,3,2,3,4,1]               #expansion permutation box
-s1=[['01','00','11','10'],['11','10','01','00'],['00','10','01','11'],['11','01','11','10']]    #substitution-box 1
-s2=[['00','01','10','11'],['10','00','01','11'],['11','00','01','00'],['10','01','00','11']]    #substitution-box 2
+s1=[[1,0,3,2],[3,2,1,0],[0,2,1,3],[3,1,3,2]]    #substitution-box 1
+s2=[[0,1,2,3],[2,0,1,3],[3,0,1,0],[2,1,0,3]]    #substitution-box 2
 key='1010000010'
 plaintext='11011000'            #First Input String '01100010'
 
